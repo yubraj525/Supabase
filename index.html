@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      h1 {
+        align-self: center;
+        color: #333;
+        text-align: center;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      form {
+        max-width: 300px;
+        margin: auto;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Signup Form</h1>
+    <form action="/submit" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required /><br /><br />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+      /><br /><br />
+
+      <input type="submit" value="Sign Up" />
+    </form>
+  </body>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script>
+    const { createClient } = supabase;
+    const database = createClient(
+      "https://natgmlxkbxguhzagwany.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hdGdtbHhrYnhndWh6YWd3YW55Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcxMjUxOTAsImV4cCI6MjA3MjcwMTE5MH0.aahx71riOpMwP2QBJhgOYAyGK2bZ1rh3ngwFk35G5yE"
+    );
+    let formdata = {};
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const formdata = {
+    username,
+    email,
+    password,
+  };
+
+  console.log(formdata);
+
+  const { data, error } = await database
+    .from("user_signup")
+    .insert([formdata])
+    .select();
+
+  if (error) {
+    console.error("Insert error:", error);
+  } else {
+    console.log("Inserted row(s):", data);
+    form.reset();
+  }
+});
+
+  </script>
+</html>
