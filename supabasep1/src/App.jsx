@@ -1,15 +1,22 @@
-import { useEffect,useState } from "react";
 
+import { useState,useEffect } from "react"
 
 const App = () => {
-  const [change, setChange] = useState(false);
-  useEffect(() => {
-    console.log('App component mounted');
-  }
-, [change]);
-  console.log('App component rendered');
+ const [time, setTime] = useState(0)
+
+ useEffect(() => {
+  const interval = setInterval(() => {
+    const date = new Date()
+   setTime( date.toDateString() )
+  }, 1000)
+
+  return () => clearInterval(interval)
+ }, [])
+
+
+
   return (
-<button onClick={setChange(false)}> click me</button>
+<p className="text-3xl font-bold underline">{time}</p>
   )
 }
 
