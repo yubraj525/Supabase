@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+ .thead{
+@apply border border-gray-400 px-4 py-2;
+width: 250px;
+}
