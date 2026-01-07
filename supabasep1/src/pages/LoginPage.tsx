@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { supabase } from './CreateClient'
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
 
@@ -83,9 +84,9 @@ const LoginPage = () => {
         {/* Extra Links */}
         <p className="text-center text-gray-600 mt-6">
           Don’t have an account?{" "}
-          <a href="/register" className="text-blue-600 hover:underline">
+         <Link to={'/register'} className="text-blue-600 hover:underline">
             Register
-          </a>
+            </Link>
         </p>
       </div>
     </div>
