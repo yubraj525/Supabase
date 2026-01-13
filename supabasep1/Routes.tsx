@@ -5,6 +5,7 @@ import LoginPage from './src/pages/LoginPage.tsx'
 import HomePage from './src/pages/HomePage.tsx'
 import Test from './src/pages/Test.tsx'
 import RegisterPage from './src/pages/RegisterPage.tsx'
+import ForgotPassword from './src/pages/ForgotPassword.tsx'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -20,6 +21,9 @@ const router = createBrowserRouter([
     ,{
         path: '/register',
         element: <RegisterPage />
+    },{
+        path: '/forgot-password',
+        element: <ForgotPassword />
     }
 
 ])

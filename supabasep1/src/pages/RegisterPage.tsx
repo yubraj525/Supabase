@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { supabase } from './CreateClient';
 
 const RegisterPage = () => {
       const [userData, setUserData] = React.useState({
@@ -9,6 +10,7 @@ const RegisterPage = () => {
         Confirmpassword:''
       })
       const handleChange = (e) => {
+        e.preventDefault();
         const
           { name, value } = e.target;
         setUserData({
@@ -17,9 +19,25 @@ const RegisterPage = () => {
         })
       }
         async function handleRegister(e) {
-        e.preventDefault();
-        console.log("Registering user:", userData);
-        // Registration logic goes here
+          e.preventDefault();
+        if(userData.fullName==='' || userData.email==='' || userData.password==='' || userData.Confirmpassword===''){
+          alert("Please fill in all fields");
+          return;
+        }
+        if(userData.password !== userData.Confirmpassword){
+          alert("Passwords do not match");
+          return;
+        }
+        const { data, error } = await supabase.auth.signUp({
+          email: userData.email,
+          password: userData.password,
+        });
+        if (error) {
+          alert("Error: " + error.message);
+        } else {
+          alert("Registration successful! Please check your email to confirm your account.");
+          console.log("User data:", data.user);
+        }
       }
   return (
  <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-blue-300">
@@ -83,7 +101,7 @@ const RegisterPage = () => {
               id="Confirmpassword"
               name='Confirmpassword'
               placeholder="Confirm your password"
-              onchange={handleChange}
+
               className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>

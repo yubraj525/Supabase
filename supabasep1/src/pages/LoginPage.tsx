@@ -2,23 +2,11 @@ import React, { useEffect } from 'react'
 import { supabase } from './CreateClient'
 import { Link } from 'react-router-dom';
 
+
 const LoginPage = () => {
 
-  useEffect(() => {
-    Testfetch();
-  }, []);
 
-  async function Testfetch() {
-    const { data, error } = await supabase
-      .from('user')
-      .select('*');
 
-    if (error) {
-      console.error('Error fetching data:', error);
-    } else {
-      console.log('Data fetched successfully:', data);
-    }
-  }
 
 
   const [formData, setFormData] = React.useState({
@@ -33,6 +21,29 @@ const LoginPage = () => {
       [name]: value
     })
   }
+  function Login()
+  {
+    if(formData.email==='' || formData.password===''){
+      alert("Please fill in all fields");
+      return;
+    }
+
+    supabase.auth.signInWithPassword({
+      email: formData.email,
+      password: formData.password,
+  })
+  .then((response) => {
+      if (response.error) {
+          alert("Error: " + response.error.message);
+      } else {
+          alert("Login successful!");
+          console.log("User data:", response.data.user);
+      }
+  })
+  }
+
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-blue-300">
       {/* Login Card */}
@@ -76,7 +87,10 @@ const LoginPage = () => {
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg shadow hover:bg-blue-700 transition"
-            onClick={(e) => { e.preventDefault(); console.log(formData);  setFormData({ email: '', password: '' })}}>
+            onClick={(e) => {
+              Login();
+              e.preventDefault();
+            }}>
             Login
           </button>
         </form>
@@ -88,9 +102,16 @@ const LoginPage = () => {
             Register
             </Link>
         </p>
+        <p className="text-center text-gray-600 mt-6">
+          Forgot your password?{" "}
+         <Link to={'/forgot-password'} className="text-blue-600 hover:underline">
+            Reset Password
+            </Link>
+        </p>
       </div>
     </div>
   )
 }
+
 
 export default LoginPage
