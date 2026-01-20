@@ -35,7 +35,7 @@ const RegisterPage = () => {
         if (error) {
           alert("Error: " + error.message);
         } else {
-          alert("Registration successful! Please check your email to confirm your account.");
+          alert("Registration successful! ");
           console.log("User data:", data.user);
         }
       }

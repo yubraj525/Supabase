@@ -6,6 +6,7 @@ import HomePage from './src/pages/HomePage.tsx'
 import Test from './src/pages/Test.tsx'
 import RegisterPage from './src/pages/RegisterPage.tsx'
 import ForgotPassword from './src/pages/ForgotPassword.tsx'
+import  EcommerceDashboard  from './src/pages/landingPage.tsx'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -24,8 +25,10 @@ const router = createBrowserRouter([
     },{
         path: '/forgot-password',
         element: <ForgotPassword />
+    },{
+        path: '/home',
+        element: <EcommerceDashboard />
     }
-
 ])
 const Routes = () => {
     return (

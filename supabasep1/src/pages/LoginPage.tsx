@@ -38,6 +38,7 @@ const LoginPage = () => {
       } else {
           alert("Login successful!");
           console.log("User data:", response.data.user);
+          console.log("User data:", response.data.session);
       }
   })
   }
