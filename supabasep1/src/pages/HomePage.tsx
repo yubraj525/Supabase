@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { use } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../Context/AuthContext';
+import Logout from '../Authentication/Logout';
 
 const HomePage = () => {
+  const {user}=useAuth();
   
   return (
 <div className="flex flex-col min-h-screen">
@@ -9,9 +12,9 @@ const HomePage = () => {
       <nav className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold">MyWebsite</h1>
         <ul className="flex space-x-6">
-        <Link to={'/login'} >
+       {user? <button onClick={Logout}>Logout</button>:  <Link to={'/login'} >
         <li className="hover:text-gray-400">Login</li>
-        </Link>
+        </Link>}
           <li><a href="#about" className="hover:text-gray-400">About</a></li>
           <li><a href="#services" className="hover:text-gray-400">Services</a></li>
           <li><a href="#contact" className="hover:text-gray-400">Contact</a></li>

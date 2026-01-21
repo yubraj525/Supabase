@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Login from '../Authentication/Login';
-
+import {useNavigate} from 'react-router-dom';
 
 const LoginPage = () => {
-
-
+const navigate=useNavigate();
 
 
 
@@ -29,6 +28,7 @@ const LoginPage = () => {
     Login({email: formData.email, password: formData.password}).then((message) => {
       alert(message);
     });
+navigate('/home');
 
  
   }

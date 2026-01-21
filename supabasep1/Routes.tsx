@@ -11,10 +11,7 @@ import PrivateRoute from './src/Layout/PrivateRoute.tsx'
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <PrivateRoute>
-
-            <HomePage />
-        </PrivateRoute>
+        element:<HomePage/>
     },
        {
         path: '/login',
@@ -31,7 +28,12 @@ const router = createBrowserRouter([
         element: <ForgotPassword />
     },{
         path: '/home',
-        element: <EcommerceDashboard />
+        element:
+        <PrivateRoute>
+             <EcommerceDashboard />
+
+          
+        </PrivateRoute>
     }
 ])
 const Routes = () => {
