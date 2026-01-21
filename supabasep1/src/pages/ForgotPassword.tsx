@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { supabase } from "./CreateClient";
+import { supabase } from "../Config/CreateClient";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "100px auto" }}>
+    <div className="border-2 p-4 max-w-md mx-auto mt-24 rounded">
       <h2>Forgot Password</h2>
 
       <form onSubmit={handleReset}>
@@ -41,7 +41,7 @@ export default function ForgotPassword() {
           style={{ width: "100%", padding: 10, marginBottom: 10 }}
         />
 
-        <button type="submit" disabled={loading} style={{ width: "100%", padding: 10 }}>
+        <button type="submit" disabled={loading} className="bg-blue-500 p-2 text-white w-full rounded">
           {loading ? "Sending..." : "Send Reset Link"}
         </button>
       </form>

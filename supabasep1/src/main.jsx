@@ -1,14 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+
 import Routes from '../Routes.jsx'
+import AuthContext from './Context/AuthContext.js'
 
 createRoot(document.getElementById('root')).render(
-  // <StrictMode>
-  <Routes>
-
-    <App />
-  </Routes>
-  // </StrictMode>,
+  <StrictMode>
+      <AuthContext>
+    <Routes>
+       
+    </Routes>
+      </AuthContext>
+  </StrictMode>,
 )

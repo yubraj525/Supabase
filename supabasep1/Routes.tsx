@@ -7,10 +7,14 @@ import Test from './src/pages/Test.tsx'
 import RegisterPage from './src/pages/RegisterPage.tsx'
 import ForgotPassword from './src/pages/ForgotPassword.tsx'
 import  EcommerceDashboard  from './src/pages/landingPage.tsx'
+import PrivateRoute from './src/Layout/PrivateRoute.tsx'
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <HomePage />
+        element: <PrivateRoute>
+
+            <HomePage />
+        </PrivateRoute>
     },
        {
         path: '/login',

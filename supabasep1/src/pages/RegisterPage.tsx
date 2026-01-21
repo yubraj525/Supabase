@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { supabase } from './CreateClient';
+import { supabase } from '../Config/CreateClient';
 
 const RegisterPage = () => {
       const [userData, setUserData] = React.useState({

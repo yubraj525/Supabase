@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import { supabase } from './CreateClient'
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Login from '../Authentication/Login';
 
 
 const LoginPage = () => {
@@ -21,26 +21,16 @@ const LoginPage = () => {
       [name]: value
     })
   }
-  function Login()
-  {
+  function handleLogin() {
     if(formData.email==='' || formData.password===''){
       alert("Please fill in all fields");
       return;
     }
+    Login({email: formData.email, password: formData.password}).then((message) => {
+      alert(message);
+    });
 
-    supabase.auth.signInWithPassword({
-      email: formData.email,
-      password: formData.password,
-  })
-  .then((response) => {
-      if (response.error) {
-          alert("Error: " + response.error.message);
-      } else {
-          alert("Login successful!");
-          console.log("User data:", response.data.user);
-          console.log("User data:", response.data.session);
-      }
-  })
+ 
   }
 
 
@@ -89,7 +79,7 @@ const LoginPage = () => {
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg shadow hover:bg-blue-700 transition"
             onClick={(e) => {
-              Login();
+              handleLogin();
               e.preventDefault();
             }}>
             Login
