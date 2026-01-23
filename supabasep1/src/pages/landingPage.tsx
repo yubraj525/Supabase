@@ -591,7 +591,7 @@ const EcommerceDashboard = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <button 
+             <Link to={'/'}> <button 
                 onClick={() => setCurrentView('home')}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg transition ${
                   currentView === 'home' ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-blue-600'
@@ -600,6 +600,7 @@ const EcommerceDashboard = () => {
                 <Home className="w-5 h-5" />
                 <span>Home</span>
               </button>
+              </Link>
             </div>
 
             {/* Search Bar */}

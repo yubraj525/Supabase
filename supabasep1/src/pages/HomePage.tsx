@@ -31,9 +31,11 @@ const HomePage = () => {
           This is a simple hero section with a background color. You can add
           images, buttons, or anything you like here.
         </p>
+        <Link to={'/home'}>
         <button className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
           Get Started
         </button>
+        </Link>
       </section>
 
       {/* Footer */}
